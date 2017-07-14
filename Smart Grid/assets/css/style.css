@@ -127,3 +127,12 @@ html {
     background-color: #f44336;
     color: white;
 }
+
+#dynamic-headings {
+    color: whitesmoke;
+    padding: 10px;
+}
+
+#renderer {
+    text-align: center;
+}
