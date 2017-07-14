@@ -1,0 +1,52 @@
+
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="file" id="fileUpload" accept=".csv" />
+	<script type="text/javascript">
+	const DATA_CHUNK = 10000;
+	var fileUpload = document.getElementById("fileUpload");
+	var file;
+
+	var status ={
+		doneTill:-1,commas:[],lineBreaks:[]
+	};
+
+	fileUpload.onchange = function(){
+		file = fileUpload.files[0];
+		var onDone  = function(evt) {
+			if (evt.target.readyState == FileReader.DONE) {
+				console.log(evt.target.result);
+			}
+		};
+		readFileFrom(1,200,onDone);
+	}
+	function readFileFrom(start,endIncluding,onDone){
+		var reader = new FileReader();
+		reader.onloadend = onDone; 
+		reader.readAsBinaryString(file.slice(start, endIncluding + 1));
+	}
+
+	function getValueOfRow(index,call){
+		if(index<status.lineBreaks.length){
+			readFileFrom(status.lineBreaks[index-1],status.lineBreaks[index],(ev)=>call());
+		}
+	}
+	function updateTillRow(row){
+
+	}
+	function getNextLineBreakIndex(row){
+		// if(status.lineBreaks[]);
+
+	}
+
+
+
+	fileUpload.click();
+	</script>
+
+</body>
+</html>
