@@ -91,3 +91,24 @@
          alert("Please upload a valid CSV file OR File Not Uploaded!");
      }
  }
+
+ function enableDisableEdit(button) {
+     var x = document.getElementById("dvCSV");
+     if (x.contentEditable == "true") {
+         x.contentEditable = "false";
+         button.innerHTML = "Enable Edit";
+     } else {
+         x.contentEditable = "true";
+         button.innerHTML = "Disable Edit";
+     }
+ }
+
+ function downloadInnerHtml(filename, elId, mimeType) {
+     var elHtml = document.getElementById(elId).innerHTML;
+     var link = document.createElement('a');
+     mimeType = mimeType || 'text/plain';
+
+     link.setAttribute('download', filename);
+     link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elHtml));
+     link.click();
+ }

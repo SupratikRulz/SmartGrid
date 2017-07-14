@@ -19,7 +19,9 @@
             <div id="dynamic-headings">
             </div>
             <div id="renderer">
-                <input type="button" id="render" value="RENDER" class="button" onclick="Render()" />
+                <input type="button" id="render" value="Render" class="button" onclick="Render()" />
+                <button onclick="enableDisableEdit(this);" class="button">Disable Edit</button>
+                <button href="#" id="downloadLink" onclick="downloadInnerHtml('DisplayedData.html', 'dvCSV', 'text/html')" class="button">Download</button>
             </div>
         </div>
         <div id="main-container">
@@ -31,7 +33,7 @@
                 </div>
             </div>
         </div>
-        <div id="dvCSV">
+        <div id="dvCSV" contenteditable="true">
         </div>
     </div>
     <script type="text/javascript" src="assets/js/uploader.js"></script>
