@@ -1,5 +1,9 @@
  var checked = [];
  var headings;
+ String.prototype.splitCSV = function(sep) {
+     var regex = /(\s*"[^"]+"|\s*[^,]+)(?=,|$)/g;
+     return matches = this.match(regex);
+ }
 
  function Upload() {
      var fileUpload = document.getElementById("fileUpload");
@@ -10,9 +14,9 @@
              reader.onload = function(e) {
                  var table = document.createElement("table");
                  var rows = e.target.result.split("\n");
-                 console.log(rows.length);
-                 headings = rows[0].split(",");
-                 console.log(headings);
+                 console.log(rows[0]);
+                 headings = rows[0].splitCSV();
+                 //console.log(headings);
                  var container = document.getElementById("dynamic-headings");
                  container.innerHTML = "";
                  for (var k = 0; k < headings.length; k++) {
@@ -62,22 +66,22 @@
                  for (var i = 0; i < headings.length; i++) {
                      checked[i] = inputs[i].checked;
                  }
-                 console.log(checked);
-                 for (var i = 0; i < rows.length; i++) {
+                 //console.log(checked);
+                 for (var i = 0; i < rows.length - 1; i++) {
                      var row = table.insertRow(-1);
-                     var cells = rows[i].split(",");
-                     console.log("1st for:Cells=" + cells.length);
+                     var cells = rows[i].splitCSV();
+                     console.log(cells);
                      for (var j = 0; j < cells.length; j++) {
                          if (checked[j]) {
                              var cell = row.insertCell(-1);
                              cell.innerHTML = cells[j];
-                             // console.log(cell);
-                             dvCSV.appendChild(table);
+                             console.log(cell);
                          }
                      }
+                     //dvCSV.appendChild(table);
 
                  }
-                 //dvCSV.appendChild(table);
+                 dvCSV.appendChild(table);
              }
              reader.readAsText(fileUpload.files[0]);
          } else {
